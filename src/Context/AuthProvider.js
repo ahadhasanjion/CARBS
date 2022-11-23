@@ -37,11 +37,11 @@ const AuthProvider = ({children}) => {
     }, [])
 
     const authInfo = {
+        user,
         createUser,
         signIn,
         updateUser,
         logOut,
-        user,
         loading
     }
     return (
