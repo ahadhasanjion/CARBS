@@ -1,0 +1,98 @@
+[
+    
+    {
+        "name": "Tesla",
+        "category_id": "tesla",
+        "originalPrice":"35k",
+        "location":"Toronto",
+        "used": "1Years",
+        "resalePrice": "$25k",
+        "image_url":"https://i.ibb.co/R38nW0x/tesla.jpg",
+        "details": ""
+    },
+    {
+        "name": "Tesla",
+        "category_id": "tesla",
+        "location":"NM",
+        "originalPrice":"33k",
+        "used": "3Years",
+        "resalePrice": "$20k",
+        "image_url":"https://i.ibb.co/28MJ1pr/tesla1.jpg",
+        "details": ""
+    },
+    {
+        "name": "Tesla",
+        "category_id": "tesla",
+        "originalPrice":"30kk",
+        "used": "2Years",
+        "location":"LA",
+        "resalePrice": "$18k",
+        "image_url":"https://i.ibb.co/t2MyhFy/tesla2.jpg",
+        "details": ""
+    },
+    {
+    
+        "name": "Audi",
+        "category_id": "audi",
+        "location":"TX",
+        "originalPrice":"$300k",
+        "resalePrice": "$200k",
+        "used": "1.6Years",
+        "image_url":"https://i.ibb.co/wW7xCF7/audi.jpg",
+        "details": ""
+    },
+    {
+    
+        "name": "Audi",
+        "category_id": "audi",
+        "originalPrice":"$350k",
+        "resalePrice": "$200k",
+        "location":"NYC",
+        "used": "3.5Years",
+        "image_url":"https://i.ibb.co/yVv2VBT/audi1.jpg",
+        "details": ""
+    },
+    {
+    
+        "name": "Audi",
+        "category_id": "audi",
+        "originalPrice":"$250k",
+        "location":"DC",
+        "resalePrice": "$350k",
+        "used": "1.5Years",
+        "image_url":"https://i.ibb.co/y6xp0N5/audi2.jpg",
+        "details": ""
+    },
+    {
+        "name": "Lamborghini",
+        "category_id": "lamborghini",
+        "originalPrice":"$400k",
+        "resalePrice": "$500k",
+        "location":"LA",
+        "used": "1Years",
+        "image_url":"https://i.ibb.co/jMx3m1b/lambo.jpg",
+        "details": "."
+    },
+    {
+        "name": "Lamborghini",
+        "category_id": "lamborghini",
+        "originalPrice":"$400k",
+        "resalePrice": "$500k",
+        "location":"AZ",
+        "used": "2.5Years",
+        "image_url":"https://i.ibb.co/VJXqFjm/lambo1.jpg",
+        "details": ""
+    },
+    {
+        "name": "Lamborghini",
+        "category_id": "lamborghini",
+        "originalPrice":"$400k",
+        "resalePrice": "$500k",
+        "location":"LA",
+        "used": "2Years",
+        "image_url":"https://i.ibb.co/zmGHzcw/lambo2.jpg",
+        "details": ""
+    }
+]
+
+
