@@ -5,10 +5,14 @@ import AboutUs from "../Pages/AboutUS/AboutUs";
 import Blog from "../Pages/Blog/Blog";
 import AddProducts from "../Pages/Dashboard/AddProducts/AddProducts";
 import AllBuyers from "../Pages/Dashboard/AllBuyers/AllBuyers";
-import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import AllSellers from "../Pages/Dashboard/AllSellers/AllSellers";
+import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
+import MyProducts from "../Pages/Dashboard/MyProducts/MyProducts";
 import Footer from "../Pages/Footer/Footer";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
+import CategoriesDetails from "../Pages/Products/ProductsCard/CategoriesDetails";
+import ProductsCard from "../Pages/Products/ProductsCard/CategoriesDetails";
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 
@@ -41,6 +45,10 @@ const router = createBrowserRouter([
             {
                 path:'/signup',
                 element:<SignUp></SignUp>
+            },
+            {
+                path:'/categoriesdetails/:id',
+                element:<CategoriesDetails></CategoriesDetails>
             }
         ]
     },
@@ -49,17 +57,25 @@ const router = createBrowserRouter([
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
-                path: '/dashboard/allusers',
-                element:<AllUsers></AllUsers>
-            },
-            {
                 path: '/dashboard/allbuyers',
                 element:<AllBuyers></AllBuyers>
+            },
+            {
+                path: '/dashboard/myproducts',
+                element:<MyProducts></MyProducts>
             },
             {
                 path: '/dashboard/addproducts',
                 element:<AddProducts></AddProducts>
             },
+            {
+                path: '/dashboard/allsellers',
+                element:<AllSellers></AllSellers>
+            },
+            {
+                path: '/dashboard/myorders',
+                element:<MyOrders></MyOrders>
+            }
         ]
     }
 

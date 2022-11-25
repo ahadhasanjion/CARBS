@@ -1,22 +1,22 @@
 import React from 'react';
-import './AllBuyers.css'
+import './AllSellers.css'
 
-const AllBuyers = () => {
+const AllSellers = () => {
     return (
         <div className="overflow-x-auto w-full">
             <h2 className='text-color text-3xl font-bold mt-5'>All Sellers</h2>
             <table className="table w-full mt-4">
                 <thead>
                     <tr>
-                        <th></th>
+                    
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Delete Buyer</th>
+                        <th>Delete Seller</th>
+                        <th>Verify Seller</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th>i</th>
                         <th>
                           <p>NIALL</p>
                         </th>
@@ -26,7 +26,9 @@ const AllBuyers = () => {
                         <td>
                           <button className='btn btn-sm'>Delete</button>
                         </td>
-                       
+                        <td>
+                            <button className='btn btn-sm'>Verify</button>
+                        </td>
                        
                     </tr>
                 </tbody>
@@ -36,4 +38,4 @@ const AllBuyers = () => {
     );
 };
 
-export default AllBuyers;
+export default AllSellers;

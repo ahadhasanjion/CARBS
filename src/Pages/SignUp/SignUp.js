@@ -1,78 +1,133 @@
 import React, { useContext, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Context/AuthProvider';
-import './SignUp.css'
+import { saveUser } from '../../Hooks/SaveUser';
+import './SignUp.css';
 
-const SignUp = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, updateUser } = useContext(AuthContext);
-    const [signUpError, setSignUPError] = useState('');
-    const navigate = useNavigate();
 
-    const handleSignUp = (data) => {
-        setSignUPError('');
-        createUser(data.email, data.password)
+
+const Signup = () => {
+    const { createUser, signInWithGoogle, updateUser } = useContext(AuthContext);
+    const navigate = useNavigate()
+    const [toggle, setToggle] = useState(false);
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        const form = event.target
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const userB = {
+            email: email,
+            name:name,
+            role: `${toggle ? "Seller" : "Buyer" }`,
+        }
+        createUser(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
-                toast('Sign Up Successfully')
-                navigate('/')
+                saveUser(userB)
+
                 const userInfo = {
-                    displayName: data.name
+                    displayName: name
                 }
                 updateUser(userInfo)
-                    .then(() => { })
-                    .catch(err => console.log(err));
+                .then(() =>{
+                    toast.success('Sign Up Successfully')
+                })
+                .catch(error => console.error(error))
+                form.reset();
             })
-            .catch(error => {
-                console.log(error)
-                setSignUPError(error.message)
-            });
+            .catch(error => console.error(error))
     }
+    const googleSignIn = () => {
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+                const userB = {
+                    email: user?.email,
+                    name: user?.displayName,
+                    role: "buyer",
+                }
+                saveUser(userB);
+                toast.success('You are now our registered customer')
+                navigate('/')
 
+            })
+            .catch(error => console.error(error))
+    }
     return (
-        <div className='h-[800px] flex justify-center items-center'>
-            <div className='w-96 p-7 login'>
-                <h2 className='text-3xl font-bold text-center text-white'>Sign Up</h2>
-                <form onSubmit={handleSubmit(handleSignUp)} className="login">
-                    <div className="form-control w-full max-w-xs">
-                        <label className="label"> <span className="label-text text-white">Name</span></label>
-                        <input type="text" {...register("name", {
-                            required: "Name is Required"
-                        })} className="input input-bordered w-full max-w-xs" />
-                        {errors.name && <p className='text-white'>{errors.name.message}</p>}
-                    </div>
-                    <div className="form-control w-full max-w-xs">
-                        <label className="label"> <span className="label-text text-white">Email</span></label>
-                        <input type="email" {...register("email", {
-                            required: true
-                        })} className="input input-bordered w-full max-w-xs" />
-                        {errors.email && <p className='text-white'>{errors.email.message}</p>}
-                    </div>
-                    <div className="form-control w-full max-w-xs">
-                        <label className="label"> <span className="label-text text-white">Password</span></label>
-                        <input type="password" {...register("password", {
-                            required: "Password is required",
-                            minLength: { value: 6, message: "Password must be 6 characters long" },
-                            pattern: { value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: 'Password must have uppercase, number and special characters' }
-                        })} className="input input-bordered w-full max-w-xs" />
-                        {errors.password && <p className='text-white'>{errors.password.message}</p>}
-                    </div>
 
-                    <input className='btn hover:bg-white hover:text-red-600 w-full mt-4 login text-white outline-none border-hidden' value="Sign Up" type="submit" />
-                    {signUpError && <p className='text-white'>{signUpError}</p>}
+        <div className='flex justify-center items-center pt-8'>
+            <div className='flex flex-col max-w-md p-6 rounded-md login text-white'>
+                <div className='mb-8 text-center'>
+                    <h1 className='my-3 text-4xl font-bold'>Register</h1>
+                </div>
+                <form onSubmit={handleSubmit} noValidate='' action='' className='space-y-12 ng-untouched ng-pristine ng-valid'>
+                    <div className='space-y-4'>
+                        <div>
+                            <label htmlFor='email' className='block mb-2 text-sm text-start'>
+                                Name
+                            </label>
+                            <input type='text' name='name' id='name' placeholder='Enter Your Name Here' className='w-full px-3 py-2 border rounded-md border-white text-black' data-temp-mail-org='0' />
+                        </div>
+                        <div>
+                            <label htmlFor='email' className='block mb-2 text-sm text-start'>
+                                Email address
+                            </label>
+                            <input type='email' name='email' id='email' placeholder='Enter Your Email Here' className='w-full px-3 py-2 border rounded-md border-white text-black' data-temp-mail-org='0' />
+                        </div>
+                        <div>
+                            <div className='flex justify-between mb-2'>
+                                <label htmlFor='password' className='text-sm text-start'>
+                                    Password
+                                </label>
+                            </div>
+                            <input type='password' name='password' id='password' placeholder='password' className='w-full px-3 py-2 border rounded-md text-black' />
+                        </div>
+                        <div className="form-control mt-2">
+                            <label className="cursor-pointer label">
+                                <span className="label-text text-white">Seller</span>
+                                <input type="checkbox" onClick={()=>setToggle(!toggle)} className="checkbox checkbox-success" />
+                            </label>
+                        </div>
+                    </div>
+                    <div className='space-y-2'>
+                        <div>
+                            <button style={{ border: '1px solid white' }}
+                                type='submit'
+                                className='w-full px-8 py-3 font-semibold rounded-md  hover:text-white text-white hover:border-none'
+                            >
+                                Sign Up
+                            </button>
+                        </div>
+                    </div>
                 </form>
-                <p className='text-center text-white '>New To CRABS ? <Link className='font-bold' to="/login">Please Login</Link></p>
-                <div className="divider text-white">OR</div>
-                <button class="inline-block w-full rounded border border-red-600 px-12 py-3 text-sm font-medium text-white hover:bg-white hover:text-red-600 focus:outline-none focus:ring">
-                    SIGN UP WITH GOOGLE
-                </button>
+                <div className='flex items-center pt-4 space-x-1'>
+                    <div className='flex-1 h-px sm:w-16 '></div>
+                    <p className='px-3 text-sm'>
+                        Signup with social accounts
+                    </p>
+                    <div className='flex-1 h-px sm:w-16 '></div>
+                </div>
+                <div className='flex justify-center space-x-4'>
+                    <button onClick={googleSignIn} aria-label='Log in with Google' className='p-3 rounded-sm'>
+                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' className='w-5 h-5 fill-current'>
+                            <path d='M16.318 13.714v5.484h9.078c-0.37 2.354-2.745 6.901-9.078 6.901-5.458 0-9.917-4.521-9.917-10.099s4.458-10.099 9.917-10.099c3.109 0 5.193 1.318 6.38 2.464l4.339-4.182c-2.786-2.599-6.396-4.182-10.719-4.182-8.844 0-16 7.151-16 16s7.156 16 16 16c9.234 0 15.365-6.49 15.365-15.635 0-1.052-0.115-1.854-0.255-2.651z'></path>
+                        </svg>
+                    </button>
+                </div>
+                <p className='px-6 text-sm text-center text-white'>
+                    Already have an account yet?{' '}
+                    <Link to='/login' className='hover:underline text-white'>
+                        Sign In
+                    </Link>
 
+                </p>
             </div>
         </div>
     );
 };
 
-export default SignUp;
+export default Signup;

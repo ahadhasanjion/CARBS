@@ -1,0 +1,14 @@
+[
+    {
+        "brand": "Tesla",
+        "img":"https://i.ibb.co/5rJpq42/teslalogo.jpg"
+    },
+    {
+        "brand": "Audi",
+        "img":"https://i.ibb.co/2s1cFT3/audilogo.jpg"
+    },
+    {
+        "brand": "Lamborghini",
+        "img": "https://i.ibb.co/qNGP3Y0/lamborghini.jpg"
+    }
+]
