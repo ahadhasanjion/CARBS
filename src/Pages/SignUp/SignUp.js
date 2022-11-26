@@ -20,8 +20,8 @@ const Signup = () => {
         const password = form.password.value;
         const userB = {
             email: email,
-            name:name,
-            role: `${toggle ? "Seller" : "Buyer" }`,
+            name: name,
+            role: `${toggle ? "Seller" : "Buyer"}`,
         }
         createUser(email, password)
             .then(result => {
@@ -32,10 +32,10 @@ const Signup = () => {
                     displayName: name
                 }
                 updateUser(userInfo)
-                .then(() =>{
-                    toast.success('Sign Up Successfully')
-                })
-                .catch(error => console.error(error))
+                    .then(() => {
+                        toast.success('Sign Up Successfully')
+                    })
+                    .catch(error => console.error(error))
                 form.reset();
             })
             .catch(error => console.error(error))
@@ -86,12 +86,19 @@ const Signup = () => {
                             </div>
                             <input type='password' name='password' id='password' placeholder='password' className='w-full px-3 py-2 border rounded-md text-black' />
                         </div>
-                        <div className="form-control mt-2">
+                        <div className='form-control w-full max-w-xs'>
+                            <label className="label"> <span className="label-text text-white">Choose Role</span></label>
+                            <select  type="role" name="role" className='w-full border py-2 max-w-xs mt-3 rounded-xl text-black'>
+                                <option>Seller</option>
+                                <option>Buyer</option>
+                            </select>
+                        </div>
+                        {/* <div className="form-control mt-2">
                             <label className="cursor-pointer label">
                                 <span className="label-text text-white">Seller</span>
-                                <input type="checkbox" onClick={()=>setToggle(!toggle)} className="checkbox checkbox-success" />
+                                <input type="checkbox" onClick={() => setToggle(!toggle)} className="checkbox checkbox-success" />
                             </label>
-                        </div>
+                        </div> */}
                     </div>
                     <div className='space-y-2'>
                         <div>
