@@ -1,11 +1,11 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link,} from "react-router-dom";
 
 const CategoryCard = ({brand}) => {
     const {img, _id} = brand;
     return (
         <>
-        <Link to={`/categoriesdetails/${_id}`}>
+        <Link to={`/category/${_id}`}>
              <div>
                 <figure>
                     <img src={img} alt="brand logo" />

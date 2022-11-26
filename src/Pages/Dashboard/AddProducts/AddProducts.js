@@ -1,5 +1,7 @@
 import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
+import { ProductAdd } from '../../../Hooks/ProductAdd';
 import './AddProducts.css';
 
 
@@ -7,6 +9,14 @@ const AddProducts = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const date = new Date();
 
+    const { data: categories = [] } = useQuery({
+        queryKey: ['categories'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/category');
+            const data = await res.json();
+            return data;
+        }
+    })
     const addProduct = data => {
         const image = data.image[0];
         const formData = new FormData();
@@ -30,11 +40,11 @@ const AddProducts = () => {
                 YearOfPurchase:data.YearOfPurchase,
                 description: data.description,
                 conditionType: data.conditionType,
-                category:data.category,
+                categoryId: data.categoryId,
                 image:imageData.data.url,
-                
             };
-            console.log(product)
+            console.log(product.categoryId)
+            ProductAdd(product)
         } )
     }
 
@@ -122,13 +132,19 @@ const AddProducts = () => {
                         {errors.conditionType && <p className='text-red-500'>{errors.conditionType.message}</p>}
                     </select>
                 </div>
-                <div className='form-control w-full max-w-xs'>
-                   <label className="label"> <span className="label-text">Category</span></label>
-                    <select className='w-full border rounded-xl py-2 max-w-xs mt-3' {...register("category", { required: true })}>
-                        <option value="Tesla">Tesla</option>
-                        <option value="Audi">Audi</option>
-                        <option value="Lamborghini">Lamborghini</option>
-                        {errors.category && <p className='text-red-500'>{errors.category.message}</p>}
+                <div className="form-control w-full max-w-xs">
+                    <label className="label"> <span className="label-text">Category</span></label>
+                    <select 
+                    {...register('categoryId')}
+                    className="select input-bordered w-full max-w-xs">
+                        {
+                            categories.map(category => <option
+                                key={category._id}
+                                value={category._id}
+                            >{category.brand}</option>)
+                        }
+                        
+                        
                     </select>
                 </div>
                 <div className="form-control w-full max-w-xs">
