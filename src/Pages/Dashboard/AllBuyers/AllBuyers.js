@@ -1,22 +1,41 @@
 import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 import './AllBuyers.css'
 
-const AllBuyers = () => {
+const AllSellers = () => {
+    const {data: buyers = []} = useQuery({
+        queryKey: ['buyers'],
+        queryFn: async() =>{
+            const res = await fetch('http://localhost:5000/users/buyer/buyer');
+            const data = await res.json();
+            return data;
+        }
+    });
+
     return (
         <div className="overflow-x-auto w-full">
-            <h2 className='text-color text-3xl font-bold mt-5'>All Sellers</h2>
+            <h2 className='text-color text-3xl font-bold mt-5'>All Buyers</h2>
             <table className="table w-full mt-4">
                 <thead>
                     <tr>
-                        <th></th>
+                        <td></td>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Delete Buyer</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th>i</th>
+                    {
+                         
+                         buyers.map((buyer, i) =><tr key={buyer._id}>
+                                <th>{i+1}</th>
+                                <td>{buyer.name}</td>
+                                <td>{buyer.email}</td>
+                                <td><button className='btn btn-xs btn-danger'>Delete</button></td>
+                              </tr>)
+                          
+                    }
+                    {/* <tr>
                         <th>
                           <p>NIALL</p>
                         </th>
@@ -26,9 +45,11 @@ const AllBuyers = () => {
                         <td>
                           <button className='btn btn-sm'>Delete</button>
                         </td>
+                        <td>
+                            <button className='btn btn-sm'>Verify</button>
+                        </td>
                        
-                       
-                    </tr>
+                    </tr> */}
                 </tbody>
              
             </table>
@@ -36,4 +57,4 @@ const AllBuyers = () => {
     );
 };
 
-export default AllBuyers;
+export default AllSellers;

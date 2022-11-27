@@ -3,14 +3,21 @@ import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Context/AuthProvider';
 import { saveUser } from '../../Hooks/SaveUser';
+import useToken from '../../Hooks/UseToken';
 import './SignUp.css';
 
 
 
 const Signup = () => {
     const { createUser, signInWithGoogle, updateUser } = useContext(AuthContext);
-    const navigate = useNavigate()
-    const [toggle, setToggle] = useState(false);
+    // const [toggle, setToggle] = useState(false);    
+    const [createdUserEmail, setCreatedUserEmail] = useState('');
+    const [signUpError, setSignUPError] = useState('');
+    const [token] = useToken(createdUserEmail);
+    const navigate = useNavigate();
+    if(token){
+        navigate('/')
+    }
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -18,42 +25,60 @@ const Signup = () => {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        const userB = {
-            email: email,
-            name: name,
-            role: `${toggle ? "Seller" : "Buyer"}`,
-        }
+        const role =  form.role.value;
+        // const userB = {
+        //     email: email,
+        //     name: name,
+        //     role: `${toggle ? "Seller" : "Buyer"}`,
+        // }
+        setSignUPError('');
         createUser(email, password)
             .then(result => {
                 const user = result.user;
-                saveUser(userB)
-
+                // saveUser(userB)
+                toast.success('User Created Successfully.')
                 const userInfo = {
                     displayName: name
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        toast.success('Sign Up Successfully')
+                        saveUser(name, email, role)
                     })
                     .catch(error => console.error(error))
-                form.reset();
             })
-            .catch(error => console.error(error))
+            .catch(error => {
+                console.log(error)
+                setSignUPError(error.message)
+            });
+           form.reset();
+    }
+    const saveUser = (name, email, role) =>{
+        const user ={name, email, role};
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            setCreatedUserEmail(email);
+        })
     }
     const googleSignIn = () => {
         signInWithGoogle()
             .then(result => {
                 const user = result.user;
                 console.log(user)
-                const userB = {
-                    email: user?.email,
-                    name: user?.displayName,
-                    role: "buyer",
-                }
-                saveUser(userB);
+                setCreatedUserEmail(user?.email)
+                // const userB = {
+                //     email: user?.email,
+                //     name: user?.displayName,
+                //     role: "buyer",
+                // }
+                saveUser(user?.displayName, user?.name);
                 toast.success('You are now our registered customer')
-                navigate('/')
-
             })
             .catch(error => console.error(error))
     }
@@ -89,8 +114,8 @@ const Signup = () => {
                         <div className='form-control w-full max-w-xs'>
                             <label className="label"> <span className="label-text text-white">Choose Role</span></label>
                             <select  type="role" name="role" className='w-full border py-2 max-w-xs mt-3 rounded-xl text-black'>
-                                <option>Seller</option>
-                                <option>Buyer</option>
+                                <option value="seller">Seller</option>
+                                <option value="buyer">Buyer</option>
                             </select>
                         </div>
                         {/* <div className="form-control mt-2">

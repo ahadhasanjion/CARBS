@@ -3,16 +3,21 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate, useLocation} from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider';
+import useToken from '../../Hooks/UseToken';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { signIn } = useContext(AuthContext);
+    const { signIn, signInWithGoogle } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     const location =useLocation();
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail);
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
 
-
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
 
     const handleLogin = data => {
@@ -22,13 +27,22 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast.success('Log In Successfully.');
-                navigate(from, {replace:true});
+                setLoginUserEmail(data.email);
             })
             .catch(error => {
                 console.log(error.message)
                 setLoginError(error.message);
             });
+    }
+    const googleSignIn = () => {
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user;
+                toast.success('You are now our registered customer')
+                navigate('/')
+
+            })
+            .catch(error => console.error(error))
     }
 
     return (
@@ -62,7 +76,7 @@ const Login = () => {
                 </form>
                 <p className='text-white text-center mt-5'>New to CARBS ? <Link className='text-white' to="/signup">Create new Account</Link></p>
                 <div className="divider text-white">OR</div>
-                <button class="inline-block w-full rounded border border-red-600 px-12 py-3 text-sm font-medium text-white hover:bg-white hover:text-red-600 focus:outline-none focus:ring">
+                <button onClick={googleSignIn} class="inline-block w-full rounded border border-red-600 px-12 py-3 text-sm font-medium text-white hover:bg-white hover:text-red-600 focus:outline-none focus:ring">
                     SIGN UP WITH GOOGLE
                 </button>
             </div>
