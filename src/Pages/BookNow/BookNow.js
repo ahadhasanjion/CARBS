@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 
 const BookNow = ({book, CategoriesDetails, setBook}) => {
     const { user } = useContext(AuthContext);
-    const {title, resalePrice} = book;
+    const {title, resalePrice, image} = book;
     const handleBooking = event => {
         event.preventDefault();
         const form = event.target;
@@ -14,7 +14,9 @@ const BookNow = ({book, CategoriesDetails, setBook}) => {
         const email = form.email.value;
         const phone = form.phone.value;
         const title = form.title.value;
-        const location= form.location.value
+        const location= form.location.value;
+        const photo= form.photo.value;
+
 
         const booking = {
             title,
@@ -23,6 +25,7 @@ const BookNow = ({book, CategoriesDetails, setBook}) => {
             email,
             phone,
             location,
+            photo,
         }
         console.log(booking)
         fetch('http://localhost:5000/bookings', {
@@ -56,9 +59,9 @@ const BookNow = ({book, CategoriesDetails, setBook}) => {
                         <input type="text" name="price" defaultValue={resalePrice} disabled placeholder='Price' className="input w-full input-bordered " />
                         <input name="name" type="text" defaultValue={user?.displayName} disabled  placeholder="Your Name" className="input w-full input-bordered" />
                         <input name="email" type="email" defaultValue={user?.email} disabled placeholder="Email Address" className="input w-full input-bordered" />
+                        <input name="photo" type="text" defaultValue={image} placeholder="photo" className="input w-full input-bordered" />
                         <input name="phone" type="text" placeholder="Phone Number" className="input w-full input-bordered" />
                         <input name="location" type="text" placeholder="Location" className="input w-full input-bordered" />
-
                         <br />
                         <input className='btn bg w-full hover:bg-white hover:text-red-600' type="submit" value="Submit" />
                     </form>
