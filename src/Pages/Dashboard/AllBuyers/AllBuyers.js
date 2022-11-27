@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import './AllBuyers.css'
 
-const AllSellers = () => {
+const AllBuyers = () => {
     const {data: buyers = []} = useQuery({
         queryKey: ['buyers'],
         queryFn: async() =>{
@@ -57,4 +57,4 @@ const AllSellers = () => {
     );
 };
 
-export default AllSellers;
+export default AllBuyers;

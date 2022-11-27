@@ -37,21 +37,6 @@ const AllSellers = () => {
                               </tr>)
                           
                     }
-                    {/* <tr>
-                        <th>
-                          <p>NIALL</p>
-                        </th>
-                        <td>
-                          <p>ajhhi@.com</p>
-                        </td>
-                        <td>
-                          <button className='btn btn-sm'>Delete</button>
-                        </td>
-                        <td>
-                            <button className='btn btn-sm'>Verify</button>
-                        </td>
-                       
-                    </tr> */}
                 </tbody>
              
             </table>

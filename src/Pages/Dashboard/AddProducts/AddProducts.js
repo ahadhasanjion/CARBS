@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { ProductAdd } from '../../../Hooks/ProductAdd';
 import './AddProducts.css';
+import { AuthContext } from '../../../Context/AuthProvider';
 
 
 const AddProducts = () => {
+    const {user} = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const date = new Date();
 
@@ -42,6 +44,7 @@ const AddProducts = () => {
                 conditionType: data.conditionType,
                 categoryId: data.categoryId,
                 image:imageData.data.url,
+                email:`${user?.email}`
             };
             console.log(product.categoryId)
             ProductAdd(product)
@@ -143,8 +146,6 @@ const AddProducts = () => {
                                 value={category._id}
                             >{category.brand}</option>)
                         }
-                        
-                        
                     </select>
                 </div>
                 <div className="form-control w-full max-w-xs">
