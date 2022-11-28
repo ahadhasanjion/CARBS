@@ -5,7 +5,7 @@ import BookNow from '../../BookNow/BookNow';
 
 
 const CategoriesDetails = ({CategoriesDetails, setBook}) => {
-    const {image, sellerName, resalePrice, conditionType,YearOfPurchase, originalPrice , location, description,yearOfUse,phoneNumber, title, publishTime,} = CategoriesDetails;
+    const {image, sellerName, resalePrice,  conditionType,YearOfPurchase, originalPrice , location, description,yearOfUse,phoneNumber, title, publishTime,} = CategoriesDetails;
     return (
         <div>
             <div className="max-w-xs rounded-md shadow-md bg text-white relative p-pic mt-6">

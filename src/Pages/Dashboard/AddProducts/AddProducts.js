@@ -10,6 +10,7 @@ const AddProducts = () => {
     const {user} = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const date = new Date();
+    const time = date.toLocaleTimeString("en-US");
 
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
@@ -37,7 +38,7 @@ const AddProducts = () => {
                 resalePrice: data.resalePrice,
                 phoneNumber: data.phoneNumber,
                 location: data.location,
-                publishTime: data.publishTime,
+                publishTime: time,
                 yearOfUse: data.yearOfUse,
                 YearOfPurchase:data.YearOfPurchase,
                 description: data.description,
@@ -97,13 +98,13 @@ const AddProducts = () => {
                     })} className="input input-bordered w-full max-w-xs" />
                     {errors.location && <p className='text-red-500'>{errors.location.message}</p>}
                 </div>
-                <div className="form-control w-full max-w-xs">
+                {/* <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Publish Time</span></label>
                     <input type="time" {...register("publishTime", {
                         required: true
                     })} className="input input-bordered w-full max-w-xs" />
                     {errors.publishTime && <p className='text-red-500'>{errors.publishTime.message}</p>}
-                </div>
+                </div> */}
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Year of use</span></label>
                     <input type="number" {...register("yearOfUse", {

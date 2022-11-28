@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 
 const useBuyer = email => {
-    const [isSeller, setIsBuyer] = useState(false);
+    const [isBuyer, setIsBuyer] = useState(false);
     const [isBuyerLoading, setIsBuyerLoading] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/users/seller/${email}`)
+            fetch(`http://localhost:5000/users/buyer/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
@@ -14,6 +14,7 @@ const useBuyer = email => {
                 })
         }
     }, [email])
-    return [isSeller, isBuyerLoading]
+    return [isBuyer, isBuyerLoading]
 }
+
 export default useBuyer;
