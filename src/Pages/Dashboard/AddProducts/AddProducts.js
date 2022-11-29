@@ -12,7 +12,8 @@ const AddProducts = () => {
     const date = new Date();
     const time = date.toLocaleTimeString("en-US");
     // const imageHostingKey = process.env.REACT_IMG_KEY;
-
+    //env img key use korle amr add product ta kaj kore na tai ami key ta diye disi
+    
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
