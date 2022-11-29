@@ -54,7 +54,7 @@ const MyProducts = () => {
                             <th></th>
                             <th>Price</th>
                             <th>Delete</th>
-                            <th>Advertize</th>
+                            <th>Advertise</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,7 +65,7 @@ const MyProducts = () => {
                                 <td>
                                     <button onClick={() => handleDeleteProduct(product)} className="btn btn-xs">Delete</button>
                                 </td>
-                                <td><button onClick={() => handleAdvertise(product._id)} className='btn btn-xs btn-danger'>Advertize</button></td>
+                                <td><button onClick={() => handleAdvertise(product._id)} className='btn btn-xs btn-danger'>Advertise</button></td>
                             </tr>
                             )}
 
