@@ -8,7 +8,7 @@ const MyProducts = () => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate()
 
-    const url = `http://localhost:5000/products/myproducts?email=${user?.email}`;
+    const url = `https://carbs-server.vercel.app/products/myproducts?email=${user?.email}`;
     const { data: products = [], refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {

@@ -1,10 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import './AllBuyers.css'
-import { AuthContext } from '../../../Context/AuthProvider';
 
 const AllBuyers = () => {
-    const {user} = useContext(AuthContext)
     const {data: buyers = []} = useQuery({
         queryKey: ['buyers'],
         queryFn: async() =>{

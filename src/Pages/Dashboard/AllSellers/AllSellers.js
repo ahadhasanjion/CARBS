@@ -1,12 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import './AllSellers.css'
 import toast from 'react-hot-toast';
-import { AuthContext } from '../../../Context/AuthProvider';
 
 
 const AllSellers = () => {
-    const {user} = useContext(AuthContext)
     const { data: sellers = [], refetch} = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {

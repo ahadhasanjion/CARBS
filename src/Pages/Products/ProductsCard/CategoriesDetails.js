@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './CategoriesDetails.css'
-import { BeakerIcon } from '@heroicons/react/24/solid'
-import BookNow from '../../BookNow/BookNow';
 
 
 const CategoriesDetails = ({ CategoriesDetails, setBook }) => {

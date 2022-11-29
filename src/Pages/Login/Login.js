@@ -38,6 +38,7 @@ const Login = () => {
         signInWithGoogle()
             .then(result => {
                 const user = result.user;
+                console.log(user)
                 toast.success('LOg In Successfully')
                 navigate('/')
 

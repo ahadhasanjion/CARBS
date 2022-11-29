@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
 export const ProductAdd = (product) => {
-    fetch('http://localhost:5000/products', {
+    fetch('https://carbs-server.vercel.app/products', {
         method: 'POST', 
         headers:{
             'content-type': 'application/json'

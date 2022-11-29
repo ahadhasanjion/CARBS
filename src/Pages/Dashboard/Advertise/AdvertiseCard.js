@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const AdvertiseCard = ({ product }) => {
-  const { title, description, categoryId, image, resalePrice, location } = product;
+  const { title, description,  image, resalePrice, location } = product;
   return (
    <>
    

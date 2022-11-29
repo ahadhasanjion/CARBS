@@ -1,25 +1,35 @@
 import React, { useEffect, useState } from "react";
 import AdvertiseCard from "./AdvertiseCard";
-import { useQuery } from '@tanstack/react-query';
-import Loader from "../../Loading/Loading";
+// import { useQuery } from '@tanstack/react-query';
+import Loading from "../../Loading/Loading";
+import axios from "axios";
 
 const Advertise = () => {
-    const { data: products = [], isLoading, refetch } = useQuery({
-        queryKey: ['products'],
-        queryFn: async () => {
-            try {
-                const res = await fetch('https://carbs-server.vercel.app/advertiseproducts');
-                const data = await res.json();
-                return data;
-            }
-            catch (error) {
+  const [products, setProducts] =useState([])
 
-            }
-        }
+  useEffect(() => {
+    axios.get("https://carbs-server.vercel.app/advertiseproducts").then((response) => {
+      const data = response.data;
+
+      setProducts(data);
     });
-    if(isLoading){
-        return <Loader></Loader>
-    }
+  }, []);
+    // const { data: products = [], isLoading, } = useQuery({
+    //     queryKey: ['products'],
+    //     queryFn: async () => {
+    //         try {
+    //             const res = await fetch('https://carbs-server.vercel.app/advertiseproducts');
+    //             const data = await res.json();
+    //             return data;
+    //         }
+    //         catch (error) {
+
+    //         }
+    //     }
+    // });
+    // if(isLoading){
+    //     return <Loading></Loading>
+    // }
   return (
    <>
    

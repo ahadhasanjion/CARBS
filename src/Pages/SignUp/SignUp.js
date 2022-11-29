@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link,  useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Context/AuthProvider';
-import { saveUser } from '../../Hooks/SaveUser';
 import useToken from '../../Hooks/UseToken';
 import './SignUp.css';
 
@@ -10,7 +9,6 @@ import './SignUp.css';
 
 const Signup = () => {
     const { createUser, signInWithGoogle, updateUser } = useContext(AuthContext);
-    // const [toggle, setToggle] = useState(false);    
     const [createdUserEmail, setCreatedUserEmail] = useState('');
     const [signUpError, setSignUPError] = useState('');
     const [token] = useToken(createdUserEmail);
@@ -31,7 +29,7 @@ const Signup = () => {
         createUser(email, password)
             .then(result => {
                 const user = result.user;
-                // saveUser(userB)
+                console.log(user)
                 toast.success('User Created Successfully.')
                 const userInfo = {
                     displayName: name
@@ -68,11 +66,6 @@ const Signup = () => {
                 const user = result.user;
                 console.log(user)
                 setCreatedUserEmail(user?.email)
-                // const userB = {
-                //     email: user?.email,
-                //     name: user?.displayName,
-                //     role: "buyer",
-                // }
                 saveUser(user?.displayName, user?.name);
                 toast.success('You are now our registered customer')
             })
@@ -114,12 +107,7 @@ const Signup = () => {
                                 <option value="buyer">Buyer</option>
                             </select>
                         </div>
-                        {/* <div className="form-control mt-2">
-                            <label className="cursor-pointer label">
-                                <span className="label-text text-white">Seller</span>
-                                <input type="checkbox" onClick={() => setToggle(!toggle)} className="checkbox checkbox-success" />
-                            </label>
-                        </div> */}
+                     
                     </div>
                     <div className='space-y-2'>
                         <div>
@@ -129,6 +117,7 @@ const Signup = () => {
                             >
                                 Sign Up
                             </button>
+                            {signUpError}
                         </div>
                     </div>
                 </form>
