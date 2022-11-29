@@ -6,7 +6,11 @@ const AllBuyers = () => {
     const {data: buyers = []} = useQuery({
         queryKey: ['buyers'],
         queryFn: async() =>{
-            const res = await fetch(`https://carbs-server.vercel.app/users/buyer`);
+            const res = await fetch(`https://carbs-server.vercel.app/users/buyer`,{
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('resaleToken')}`
+                }
+            });
             const data = await res.json();
             return data;
         }
