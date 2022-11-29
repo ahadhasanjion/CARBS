@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AdvertiseCard from "./AdvertiseCard";
 // import { useQuery } from '@tanstack/react-query';
-import Loading from "../../Loading/Loading";
 import axios from "axios";
 
 const Advertise = () => {
@@ -40,7 +39,7 @@ const Advertise = () => {
     </h1>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {products?.map((product) => (
-        <AdvertiseCard key={product?._id} advertise={product}></AdvertiseCard>
+        <AdvertiseCard key={product?._id} product={product}></AdvertiseCard>
       ))}
     </div>
   </section>
