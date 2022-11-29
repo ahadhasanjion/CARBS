@@ -30,7 +30,7 @@
  
 Live Link:
 
-Admin Email:
-Admin Password:
+Admin Email: jion88@gmail.com
+Admin Password: 123456
 
 

@@ -11,7 +11,7 @@ const AddProducts = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const date = new Date();
     const time = date.toLocaleTimeString("en-US");
-    const imageHostingKey = process.env.EACT_IMGBB_KEY;
+    // const imageHostingKey = process.env.REACT_IMG_KEY;
 
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
@@ -25,7 +25,7 @@ const AddProducts = () => {
         const image = data.image[0];
         const formData = new FormData();
         formData.append('image', image);
-        const url = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`
+        const url = `https://api.imgbb.com/1/upload?key=c7dc20a1cddfbaca42a43629f694835d`
         fetch(url, {
             method: 'POST',
             body: formData
