@@ -4,8 +4,8 @@ import { BeakerIcon } from '@heroicons/react/24/solid'
 import BookNow from '../../BookNow/BookNow';
 
 
-const CategoriesDetails = ({CategoriesDetails, setBook}) => {
-    const {image, sellerName, resalePrice,  conditionType,YearOfPurchase, originalPrice , location, description,yearOfUse,phoneNumber, title, publishTime,} = CategoriesDetails;
+const CategoriesDetails = ({ CategoriesDetails, setBook }) => {
+    const { image, sellerName, resalePrice, conditionType, YearOfPurchase, originalPrice, location, description, yearOfUse, phoneNumber, title, publishTime, } = CategoriesDetails;
     return (
         <div>
             <div className="max-w-xs rounded-md shadow-md bg text-white relative p-pic mt-6">
@@ -13,8 +13,11 @@ const CategoriesDetails = ({CategoriesDetails, setBook}) => {
                 <div className="px-3 text-left pb-4">
                     <div className="space-y-2">
                         <h2 className="text-3xl font-semibold tracking-wide">{title}</h2>
-                        <p className="dark:text-gray-100">{description}</p>
                     </div>
+                    <p>
+                        <span className="font-bold dark:text-white"></span>
+                        {description?.slice(0, 30)}
+                    </p>
                     <div className="flex items-center justify-between pt-3">
                         <h2 className="text-sm font-normal">Original Price : {originalPrice}</h2>
                         <p className="text-sm font-normal">Resale Price : {resalePrice}</p>
@@ -41,12 +44,12 @@ const CategoriesDetails = ({CategoriesDetails, setBook}) => {
                     </div>
 
                     <div className="card-actions justify-center">
-                    <label
-                        htmlFor="booking-modal"
-                        className="btn btn-primary text-white w-full bg hover:bg-white hover:text-red-600"
-                        onClick={() => setBook(CategoriesDetails)}
-                    >Book Now</label>
-                </div>
+                        <label
+                            htmlFor="booking-modal"
+                            className="btn btn-primary text-white w-full bg hover:bg-white hover:text-red-600"
+                            onClick={() => setBook(CategoriesDetails)}
+                        >Book Now</label>
+                    </div>
                 </div>
             </div>
         </div>

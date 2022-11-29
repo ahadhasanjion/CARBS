@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import './AllBuyers.css'
+import { AuthContext } from '../../../Context/AuthProvider';
 
 const AllBuyers = () => {
+    const {user} = useContext(AuthContext)
     const {data: buyers = []} = useQuery({
         queryKey: ['buyers'],
         queryFn: async() =>{
-            const res = await fetch('http://localhost:5000/users/buyer/buyer');
+            const res = await fetch(`https://carbs-server.vercel.app/users/buyer`);
             const data = await res.json();
             return data;
         }

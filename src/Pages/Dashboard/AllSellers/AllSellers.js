@@ -1,20 +1,37 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import './AllSellers.css'
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../../Context/AuthProvider';
 
 
 const AllSellers = () => {
+    const {user} = useContext(AuthContext)
     const { data: sellers = [], refetch} = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users/seller/seller');
+            const res = await fetch('https://carbs-server.vercel.app/users/seller');
             const data = await res.json();
             return data;
         }
     });
+    const handleVerifySeller = id => {
+        fetch(`https://carbs-server.vercel.app/products/verifySeller/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('resaleToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Verified successfully !!')
+                    refetch();
+                }
+            })
+    }
     const handleDeleteSeller = seller => {
-        fetch(`http://localhost:5000/users/seller/${seller._id}`, {
+        fetch(`https://carbs-server.vercel.app/users/seller/${seller._id}`, {
             method: 'DELETE',
 
         })
@@ -50,7 +67,9 @@ const AllSellers = () => {
                             <td>
                                 <button onClick={() => handleDeleteSeller(seller)} className="btn btn-xs">Delete</button>
                             </td>
-                            <td><button className='btn btn-xs btn-danger'>Verify</button></td>
+                            <td>{!seller.sellerVerified === true &&<button onClick={() => handleVerifySeller(seller._id)}
+                                            className='btn btn-xs btn-primary text-white'>Verify</button>}
+                            </td>
                         </tr>)
 
                     }

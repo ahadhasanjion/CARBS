@@ -13,7 +13,7 @@ const CheckoutForm = ({ booking }) => {
     const { price, email, name, _id } = booking;
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://carbs-server.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -75,7 +75,7 @@ const CheckoutForm = ({ booking }) => {
                 email,
                 bookingId: _id
             }
-            fetch('http://localhost:5000/payments', {
+            fetch('https://carbs-server.vercel.app/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -123,7 +123,7 @@ const CheckoutForm = ({ booking }) => {
             <p className="text-red-500">{cardError}</p>
             {
                 success && <div>
-                    <p className='text-green-500'>{success}</p>
+                    <p className='text-green-600'>{success}</p>
                     <p>Your transactionId: <span className='font-bold'>{transactionId}</span></p>
                 </div>
             }

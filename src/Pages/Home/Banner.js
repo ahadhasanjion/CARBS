@@ -10,8 +10,8 @@ const Banner = () => {
                   
                     <div className='banner-text text-center'>
                         <h1 className='lg:text-8xl font-bold'>Best Place To Buy</h1>
-                        <h2 className='lg:text-6xl font-bold'>Buy & Sell Your Vehicle</h2>
-                        <p className='lg:text-2xl font-normal'>FIND CAR. ADD TO CARR. FREE DELIVERY.</p>
+                        <h2 className='lg:text-6xl font-bold'>& Sell Your Cars</h2>
+                        <p className='lg:text-2xl font-normal'>FIND CAR. ADD TO CAR. FREE DELIVERY.</p>
                     </div>
                 </div>
             </div>

@@ -26,11 +26,7 @@ const Signup = () => {
         const email = form.email.value;
         const password = form.password.value;
         const role =  form.role.value;
-        // const userB = {
-        //     email: email,
-        //     name: name,
-        //     role: `${toggle ? "Seller" : "Buyer"}`,
-        // }
+       
         setSignUPError('');
         createUser(email, password)
             .then(result => {
@@ -54,7 +50,7 @@ const Signup = () => {
     }
     const saveUser = (name, email, role) =>{
         const user ={name, email, role};
-        fetch('http://localhost:5000/users', {
+        fetch('https://carbs-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

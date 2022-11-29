@@ -11,11 +11,12 @@ const AddProducts = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const date = new Date();
     const time = date.toLocaleTimeString("en-US");
+    const imageHostingKey = process.env.EACT_IMGBB_KEY;
 
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/category');
+            const res = await fetch('https://carbs-server.vercel.app/category');
             const data = await res.json();
             return data;
         }
@@ -24,7 +25,7 @@ const AddProducts = () => {
         const image = data.image[0];
         const formData = new FormData();
         formData.append('image', image);
-        const url = 'https://api.imgbb.com/1/upload?key=c7dc20a1cddfbaca42a43629f694835d'
+        const url = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`
         fetch(url, {
             method: 'POST',
             body: formData

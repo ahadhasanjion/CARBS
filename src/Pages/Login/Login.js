@@ -38,7 +38,7 @@ const Login = () => {
         signInWithGoogle()
             .then(result => {
                 const user = result.user;
-                toast.success('You are now our registered customer')
+                toast.success('LOg In Successfully')
                 navigate('/')
 
             })

@@ -16,7 +16,9 @@ import Home from "../Pages/Home/Home/Home";
 import Category from "../Pages/Home/Home/MyCategory/Category";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
+import SellerRoute from "./SellerRoute";
 
 
 const router = createBrowserRouter([
@@ -63,19 +65,19 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard/allbuyers',
-                element:<AllBuyers></AllBuyers>
+                element:<AdminRoute><AllBuyers></AllBuyers></AdminRoute>
             },
             {
                 path: '/dashboard/myproducts',
-                element:<MyProducts></MyProducts>
+                element:<SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
             {
                 path: '/dashboard/addproducts',
-                element:<AddProducts></AddProducts>
+                element:<SellerRoute><AddProducts></AddProducts></SellerRoute>
             },
             {
                 path: '/dashboard/allsellers',
-                element:<AllSellers></AllSellers>
+                element:<AdminRoute><AllSellers></AllSellers></AdminRoute>
             },
             {
                 path: '/dashboard/myorders',

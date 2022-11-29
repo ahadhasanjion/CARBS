@@ -28,7 +28,7 @@ const BookNow = ({book, CategoriesDetails, setBook}) => {
             photo,
         }
         console.log(booking)
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://carbs-server.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
