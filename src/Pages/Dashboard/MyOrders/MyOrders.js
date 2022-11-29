@@ -2,15 +2,18 @@ import React, { useContext} from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { Link } from 'react-router-dom';
+import Loading from '../../Loading/Loading';
+import './MyOrders.css'
 
 const MyOrders = () => {
     const {user} = useContext(AuthContext)
 
-    const url = `https://carbs-server.vercel.app/products/bookings?email=${user?.email}`;
-    const { data: bookings = [] } = useQuery({
-        queryKey: ['bookings'],
+    // const url = `http://localhost:5000/bookings?email=${user?.email}`;
+    // console.log(url)
+    const { data: bookings = [], isLoading } = useQuery({
+        queryKey: ['bookings', user?.email],
         queryFn: async () => {
-            const res = await fetch (url, {
+            const res = await fetch (`"https://carbs-server.vercel.app/bookings?email=${user?.email}`, {
               authorization: `bearer ${localStorage.getItem('accessToken')}`
 
             })
@@ -18,10 +21,12 @@ const MyOrders = () => {
             return data;
         }
     })
-    console.log(bookings);
+    if(isLoading){
+      return <Loading></Loading>
+    }
     return (
         <div>
-            <h2 className="text-3xl">My Orders</h2>
+            <h2 className="text-3xl text-color">My Orders</h2>
             <div className="overflow-x-auto">
   <table className="table w-full">
     <thead>
