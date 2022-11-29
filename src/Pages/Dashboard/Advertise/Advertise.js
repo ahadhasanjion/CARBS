@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AdvertiseCard from "./AdvertiseCard";
-// import { useQuery } from '@tanstack/react-query';
 import axios from "axios";
+import './Advertise.css'
 
 const Advertise = () => {
   const [products, setProducts] =useState([])
@@ -13,28 +13,11 @@ const Advertise = () => {
       setProducts(data);
     });
   }, []);
-    // const { data: products = [], isLoading, } = useQuery({
-    //     queryKey: ['products'],
-    //     queryFn: async () => {
-    //         try {
-    //             const res = await fetch('https://carbs-server.vercel.app/advertiseproducts');
-    //             const data = await res.json();
-    //             return data;
-    //         }
-    //         catch (error) {
-
-    //         }
-    //     }
-    // });
-    // if(isLoading){
-    //     return <Loading></Loading>
-    // }
   return (
    <>
    
-   {
-    products.length > 0 &&  <section className="">
-    <h1 className="text-4xl font-bold text-center my-24">
+    <section className="">
+    <h1 className="text-4xl font-bold text-center my-24 text-color">
       Hot products
     </h1>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -43,7 +26,7 @@ const Advertise = () => {
       ))}
     </div>
   </section>
-   }
+   
    
    </>
   );
