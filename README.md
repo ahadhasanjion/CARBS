@@ -28,7 +28,7 @@
 - Admin will see All Sellers/All buyers
 - buyers can pay with stripe payment gateway
  
-Live Link:
+Live Link: https://carbs-1687c.web.app/
 
 Admin Email: jion88@gmail.com
 Admin Password: 123456
