@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 import './BookNow.css';
 import toast from 'react-hot-toast';
+import Loading from '../Loading/Loading';
 
 const BookNow = ({book, CategoriesDetails, setBook}) => {
     const { user } = useContext(AuthContext);
@@ -31,7 +32,9 @@ const BookNow = ({book, CategoriesDetails, setBook}) => {
         fetch('https://carbs-server.vercel.app/bookings', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+
             },
             body: JSON.stringify(booking)
         })
@@ -39,7 +42,9 @@ const BookNow = ({book, CategoriesDetails, setBook}) => {
             .then(data => {
                 console.log(data);
                 if (data.acknowledged) {
+                    <Loading></Loading>
                     setBook(null)
+
                     toast.success('Booking confirmed');
                 }
                 else{
