@@ -10,18 +10,18 @@ const AllSellers = () => {
         queryFn: async () => {
         const res = await fetch('https://carbs-server.vercel.app/users/seller',{
             headers: {
-                authorization: `bearer ${localStorage.getItem('resaleToken')}`
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         });
             const data = await res.json();
             return data;
         }
     });
-    const handleVerifySeller = id => {
-        fetch(`https://carbs-server.vercel.app/products/verifySeller/${id}`, {
+    const handleVerifySeller = email => {
+        fetch(`https://carbs-server.vercel.app/products/verifySeller/${email}`, {
             method: 'PUT',
             headers: {
-                authorization: `bearer ${localStorage.getItem('resaleToken')}`
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => res.json())

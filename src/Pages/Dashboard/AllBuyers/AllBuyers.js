@@ -8,7 +8,7 @@ const AllBuyers = () => {
         queryFn: async() =>{
             const res = await fetch(`https://carbs-server.vercel.app/users/buyer`,{
                 headers: {
-                    authorization: `bearer ${localStorage.getItem('resaleToken')}`
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
             });
             const data = await res.json();

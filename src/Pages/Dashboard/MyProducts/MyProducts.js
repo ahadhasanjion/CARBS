@@ -19,7 +19,7 @@ const MyProducts = () => {
         fetch(`https://carbs-server.vercel.app/products/advertise/${id}`, {
             method: 'PUT',
             headers: {
-                authorization: `bearer ${localStorage.getItem('resaleToken')}`
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => res.json())
