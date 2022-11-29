@@ -2,11 +2,9 @@ import React, { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../../Context/AuthProvider';
 import toast from 'react-hot-toast';
-import { useNavigate } from "react-router-dom";
 
 const MyProducts = () => {
     const { user } = useContext(AuthContext);
-    const navigate = useNavigate()
 
     const url = `https://carbs-server.vercel.app/products/myproducts?email=${user?.email}`;
     const { data: products = [], refetch } = useQuery({
@@ -33,7 +31,7 @@ const MyProducts = () => {
             })
     };
     const handleDeleteProduct = product => {
-        fetch(`https://carbs-server.vercel.app/products/${product._id}`, {
+        fetch(`https://carbs-server.vercel.app/product/${product._id}`, {
             method: 'DELETE',
 
         })
@@ -42,7 +40,6 @@ const MyProducts = () => {
                 if (data.deletedCount > 0) {
                     refetch();
                     toast.success('deleted successfully')
-                    navigate('/dashboard/myproducts')
                 }
             })
     }
