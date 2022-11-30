@@ -6,7 +6,7 @@ const AdvertiseCard = ({ product , CategoriesDetails, setBook}) => {
    <>
 
 <div>
-            <div className="max-w-xs rounded-md shadow-md bg text-white relative p-pic mt-6">
+            <div className=" rounded-md shadow-md bg text-white relative p-pic mt-6">
                 <img src={image} alt="" className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500" />
                 <div className="px-3 text-left pb-4">
                     <div className="space-y-2">

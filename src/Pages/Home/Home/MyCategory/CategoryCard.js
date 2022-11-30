@@ -7,7 +7,7 @@ const CategoryCard = ({brand}) => {
         <>
         <Link to={`/category/${_id}`}>
              <div>
-                <figure>
+                <figure className='mx-auto my-2 bg-red-500'>
                     <img src={img} alt="brand logo" />
                 </figure>
                 <div></div>

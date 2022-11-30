@@ -20,7 +20,7 @@ const Advertise = () => {
     <h1 className="text-4xl font-bold text-center my-24 text-color">
       Hot products
     </h1>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-auto">
       {products?.map((product) => (
         <AdvertiseCard key={product?._id} product={product}></AdvertiseCard>
       ))}
