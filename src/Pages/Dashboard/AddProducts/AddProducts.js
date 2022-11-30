@@ -53,7 +53,7 @@ const AddProducts = () => {
             };
             console.log(product.categoryId)
             ProductAdd(product)
-            navigate('/myproducts')
+            navigate('/dashboard/myproducts')
         } )
     }
 

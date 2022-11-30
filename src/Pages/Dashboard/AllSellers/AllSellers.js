@@ -18,7 +18,7 @@ const AllSellers = () => {
         }
     });
     const handleVerifySeller = email => {
-        fetch(`https://carbs-server.vercel.app//products/verifySeller/${email}`, {
+        fetch(`https://carbs-server.vercel.app/products/verifySeller/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
