@@ -66,7 +66,7 @@ const Signup = () => {
                 const user = result.user;
                 console.log(user)
                 setCreatedUserEmail(user?.email)
-                saveUser(user?.displayName, user?.email);
+                saveUser(user?.displayName, user?.email, 'buyer');
                 toast.success('You are now our registered customer')
             })
             .catch(error => console.error(error))
