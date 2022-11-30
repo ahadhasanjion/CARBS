@@ -26,7 +26,7 @@ const BookNow = ({book, CategoriesDetails, setBook}) => {
             email,
             phone,
             location,
-            photo,
+            image,
             productId:_id
         }
         console.log(booking)

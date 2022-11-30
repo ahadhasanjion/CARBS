@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../../Context/AuthProvider';
 import toast from 'react-hot-toast';
+import './MyProducts.css'
 
 const MyProducts = () => {
     const { user } = useContext(AuthContext);
@@ -33,6 +34,9 @@ const MyProducts = () => {
     const handleDeleteProduct = product => {
         fetch(`https://carbs-server.vercel.app/product/${product._id}`, {
             method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
 
         })
             .then(res => res.json())
@@ -46,7 +50,7 @@ const MyProducts = () => {
     console.log(products);
     return (
         <div>
-            <h2 className="text-3xl">My Products</h2>
+            <h2 className="text-3xl text-color font-bold my-4">My Products</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>

@@ -34,27 +34,26 @@ const Login = () => {
                 setLoginError(error.message);
             });
     }
-    const saveUser = (name, email, role) =>{
-        const user ={name, email, role};
-        fetch('https://carbs-server.vercel.app/users', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        })
-        .then(res => res.json())
-        .then(data =>{
-            setLoginUserEmail(email);
-        })
-    }
+    // const saveUser = (name, email, role) =>{
+    //     const user ={name, email, role};
+    //     fetch('https://carbs-server.vercel.app/users', {
+    //         method: 'POST',
+    //         headers: {
+    //             'content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify(user)
+    //     })
+    //     .then(res => res.json())
+    //     .then(data =>{
+    //         setLoginUserEmail(email);
+    //     })
+    // }
     const googleSignIn = () => {
         signInWithGoogle()
             .then(result => {
                 const user = result.user;
                 console.log(user)
                 setLoginUserEmail(user?.email)
-                saveUser(user?.displayName, user?.email, 'buyer');
                 toast.success('LOg In Successfully')
                 navigate('/')
 
