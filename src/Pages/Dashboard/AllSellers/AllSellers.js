@@ -35,6 +35,9 @@ const AllSellers = () => {
     const handleDeleteSeller = seller => {
         fetch(`https://carbs-server.vercel.app/users/seller/${seller._id}`, {
             method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
 
         })
             .then(res => res.json())

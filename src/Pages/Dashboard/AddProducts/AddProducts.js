@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { ProductAdd } from '../../../Hooks/ProductAdd';
 import './AddProducts.css';
 import { AuthContext } from '../../../Context/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 
 const AddProducts = () => {
@@ -11,6 +12,7 @@ const AddProducts = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const date = new Date();
     const time = date.toLocaleTimeString("en-US");
+    const navigate = useNavigate()
     // const imageHostingKey = process.env.REACT_IMG_KEY;
     //env img key use korle amr add product ta kaj kore na tai ami key ta diye disi
     
@@ -51,6 +53,7 @@ const AddProducts = () => {
             };
             console.log(product.categoryId)
             ProductAdd(product)
+            navigate('/myproducts')
         } )
     }
 

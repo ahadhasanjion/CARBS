@@ -1,9 +1,10 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import './AllBuyers.css'
+import './AllBuyers.css';
+import toast from 'react-hot-toast';
 
 const AllBuyers = () => {
-    const {data: buyers = []} = useQuery({
+    const {data: buyers = [], refetch} = useQuery({
         queryKey: ['buyers'],
         queryFn: async() =>{
             const res = await fetch(`https://carbs-server.vercel.app/users/buyer`,{
@@ -15,6 +16,23 @@ const AllBuyers = () => {
             return data;
         }
     });
+    const handleDeleteBuyer = buyer => {
+        fetch(`https://carbs-server.vercel.app/users/buyer/${buyer._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    refetch();
+                    toast.success('deleted successfully')
+                }
+            })
+    }
+
 
     return (
         <div className="overflow-x-auto w-full">
@@ -35,7 +53,7 @@ const AllBuyers = () => {
                                 <th>{i+1}</th>
                                 <td>{buyer.name}</td>
                                 <td>{buyer.email}</td>
-                                <td><button className='btn btn-xs btn-danger'>Delete</button></td>
+                                <td><button onClick={()=>handleDeleteBuyer(buyer)} className='btn btn-xs btn-danger'>Delete</button></td>
                               </tr>)
                           
                     }

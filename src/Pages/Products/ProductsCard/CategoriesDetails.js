@@ -6,7 +6,7 @@ const CategoriesDetails = ({ CategoriesDetails, setBook }) => {
     const { image, sellerName, resalePrice, conditionType, YearOfPurchase, originalPrice, location, description, yearOfUse, phoneNumber, title, publishTime, verify } = CategoriesDetails;
     return (
         <div>
-            <div className="max-w-xs rounded-md shadow-md bg text-white relative p-pic mt-6">
+            <div className="rounded-md shadow-md bg text-white relative p-pic mt-6">
                 <img src={image} alt="" className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500" />
                 <div className="px-3 text-left pb-4">
                     <div className="space-y-2">
@@ -17,8 +17,8 @@ const CategoriesDetails = ({ CategoriesDetails, setBook }) => {
                         {description?.slice(0, 30)}
                     </p>
                     <div className="flex items-center justify-between pt-3">
-                        <h2 className="text-sm font-normal">Original Price : {originalPrice}</h2>
-                        <p className="text-sm font-normal">Resale Price : {resalePrice}</p>
+                        <h2 className="text-sm font-normal">Original Price : ${originalPrice}</h2>
+                        <p className="text-sm font-normal">Resale Price : ${resalePrice}</p>
                     </div>
                     <div className="flex items-center justify-between pt-3">
                         <h2 className="text-sm font-normal">Condition: {conditionType}</h2>

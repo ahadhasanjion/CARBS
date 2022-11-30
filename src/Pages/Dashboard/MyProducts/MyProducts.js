@@ -52,6 +52,7 @@ const MyProducts = () => {
                     <thead>
                         <tr>
                             <th></th>
+                            <th>Title</th>
                             <th>Price</th>
                             <th>Delete</th>
                             <th>Advertise</th>
@@ -61,6 +62,7 @@ const MyProducts = () => {
                         {
                             products && products?.map((product, i) => <tr key={product._id}>
                                 <th>{i + 1}</th>
+                                <td>{product.title}</td>
                                 <td>{product.resalePrice}</td>
                                 <td>
                                     <button onClick={() => handleDeleteProduct(product)} className="btn btn-xs">Delete</button>

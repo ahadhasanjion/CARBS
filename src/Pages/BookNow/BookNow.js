@@ -6,7 +6,7 @@ import Loading from '../Loading/Loading';
 
 const BookNow = ({book, CategoriesDetails, setBook}) => {
     const { user } = useContext(AuthContext);
-    const {title, resalePrice, image} = book;
+    const {title, resalePrice, image , _id} = book;
     const handleBooking = event => {
         event.preventDefault();
         const form = event.target;
@@ -27,9 +27,10 @@ const BookNow = ({book, CategoriesDetails, setBook}) => {
             phone,
             location,
             photo,
+            productId:_id
         }
         console.log(booking)
-        fetch('https://carbs-server.vercel.app/bookings', {
+        fetch(' https://carbs-server.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
