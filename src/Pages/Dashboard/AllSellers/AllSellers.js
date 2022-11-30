@@ -18,7 +18,7 @@ const AllSellers = () => {
         }
     });
     const handleVerifySeller = email => {
-        fetch(`https://carbs-server.vercel.app/products/verifySeller/${email}`, {
+        fetch(`https://carbs-server.vercel.app//products/verifySeller/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -72,7 +72,7 @@ const AllSellers = () => {
                             <td>
                                 <button onClick={() => handleDeleteSeller(seller)} className="btn btn-xs">Delete</button>
                             </td>
-                            <td>{!seller.sellerVerified === true &&<button onClick={() => handleVerifySeller(seller._id)}
+                            <td>{!seller.sellerVerified === true &&<button onClick={() => handleVerifySeller(seller.email)}
                                             className='btn btn-xs btn-primary text-white'>Verify</button>}
                             </td>
                         </tr>)
